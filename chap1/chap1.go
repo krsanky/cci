@@ -53,3 +53,16 @@ func IsPermutation(s1, s2 string) bool {
 	}
 	return false
 }
+
+func Q3() {
+	fmt.Println("question 3:")
+	ss := []string{"asd 1 23    ", "q  weq  we        ", "d fsW  "}
+	for _, s := range ss {
+		s_ := s
+		URLify(s)
+		fmt.Printf("[%s] [%s]\n", s, s_)
+	}
+}
+func URLify(s string) {
+	//s[1] = "x"
+}
