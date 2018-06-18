@@ -9,4 +9,5 @@ import (
 func main() {
 	fmt.Println("cci")
 	chap1.Q1()
+	chap1.Q2()
 }
