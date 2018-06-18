@@ -2,6 +2,8 @@ package chap1
 
 import (
 	"fmt"
+	"sort"
+	"strings"
 )
 
 var q = `
@@ -16,6 +18,7 @@ func Q1() {
 		fmt.Printf("%s unique-chars?: %v\n", s, UniqueChars1(s))
 	}
 }
+
 func UniqueChars1(s string) bool {
 	chars := make(map[string]bool)
 	for _, c := range s {
@@ -37,6 +40,16 @@ func Q2() {
 		fmt.Printf("%s - %s is-perm:%v\n", ss1[i], ss2[i], IsPermutation(ss1[i], ss2[i]))
 	}
 }
+
+func SortString(s string) string {
+	ss := strings.Split(s, "")
+	sort.Strings(ss)
+	return strings.Join(ss, "")
+}
+
 func IsPermutation(s1, s2 string) bool {
+	if SortString(s1) == SortString(s2) {
+		return true
+	}
 	return false
 }
