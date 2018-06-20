@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"oldcode.org/cci/chap1"
+	"github.com/krsanky/cci/chap1"
 )
 
 func main() {
