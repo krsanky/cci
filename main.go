@@ -22,7 +22,7 @@ func main() {
 	fmt.Printf("type:%v\n", reflect.TypeOf(s))
 
 	v1 := []string{"asd", "qwe", "123"}
-	v2 := [3]string{"asd", "qwe", "123"}
+	v2 := [4]string{"asd", "qwe", "123"}
 	fmt.Printf("type:%v\n", reflect.TypeOf(v1))
 	fmt.Printf("type:%v\n", reflect.TypeOf(v2))
 }

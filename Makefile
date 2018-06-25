@@ -1,5 +1,5 @@
 chap1_q3: _chap1_q3.cpp
-	@echo echo echo $<
+	@echo echo echo 
 	c++ -o chap1_q3 _chap1_q3.cpp
 
 install: 
@@ -11,9 +11,9 @@ uninstall: clean
 clean:
 	rm -f chap1_q3 
 
-depend:
+#depend:  '>' is gnu specific
 #	cc -E -MM *.c > .depend
-	cc -E -MM *.cpp > .depend
+#	cc -E -MM *.cpp > .depend
 
 
 #Local variables
