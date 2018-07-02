@@ -1,6 +1,6 @@
-chap1_q3: _chap1_q3.cpp
+chap1_q3: _chap1_q3.c
 	@echo echo echo 
-	c++ -o chap1_q3 _chap1_q3.cpp
+	cc -o chap1_q3 _chap1_q3.c
 
 install: 
 	cp chap1_q3 ${HOME}/bin

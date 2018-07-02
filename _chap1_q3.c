@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void URLify(char *);
 int count_spaces(char *);
+void allocate_test();
+char * copy_with_trailing_spaces(char *, int);
 
-int main(int argc, char * argv[]) {
+int 
+main(int argc, char * argv[]) 
+{
 	//printf("%s: num-args:%d\n", argv[0], argc);
 /*
 	char s1[] = "str str str    ";
@@ -20,10 +25,12 @@ int main(int argc, char * argv[]) {
 	char s4[] = "q  weq  we";
 	char s5[] = "d fsW ";
 	char s6[] = "A";
-	//URLify(s1);
+	char s7[] = "a top";
+	
 	URLify(s2);
-	//URLify(s3);
+	URLify(s7);
 
+	allocate_test();
 	return 0;
 }
 
@@ -34,6 +41,7 @@ void URLify(char * s) {
 	//for (int i=0; i<last; i++) printf("%2d: %c\n", i, s[i]);
 
 	printf("num spaces:%d\n", count_spaces(s));
+    copy_with_trailing_spaces(s, 4);
 	
 }
 
@@ -46,4 +54,26 @@ int count_spaces(char * s) {
     }
     return n;
 }
+
+void allocate_test() {
+	int *array = malloc(10 * sizeof(int));
+	if (array == NULL) {
+		fprintf(stderr, "malloc failed\n");
+	    //return(-1);
+	}
+	free(array);
+}
+
+// https://man.openbsd.org/strlcpy.3
+// https://www.sudo.ws/todd/papers/strlcpy.html
+char * copy_with_trailing_spaces(char * s, int spaces) {
+    int len = ((strlen(s) + count_spaces(s)) * sizeof(char)) + 1; // +1 for null terminator?
+    char * copy = malloc(len);
+
+    strcpy(copy, s);
+    //strlcpy(copy, s, sizeof(copy));
+    printf("copy[%s] tried for length:%d copy length:%zu\n", copy, len, strlen(copy));
+    return copy;
+}
+
 
