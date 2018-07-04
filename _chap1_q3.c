@@ -11,16 +11,20 @@ int
 main(int argc, char * argv[]) 
 {
 	//printf("%s: num-args:%d\n", argv[0], argc);
-	char s1[] = "str str str";
-	char s2[] = "test string 1";
-	char s3[] = "asd 1 23";
-	char s4[] = "q  weq  we";
-	char s5[] = "d fsW ";
-	char s6[] = "A";
-	char s7[] = "a top";
+    
+    char * words[] = {
+	    "str str str",
+	    "test string 1",
+	    "asd 1 23",
+	    "q  weq  we",
+	    "d fsW ",
+        "asd 123  2 3 4",
+	    "A",
+	    "a top"};
 	
-	URLify(s2);
-	URLify(s7);
+	//URLify(s2);
+	//URLify(s7);
+    printf("1st word:%zu array of words:%zu\n", sizeof(words[0]), sizeof(words)/sizeof(words[0]));
 
 	allocate_test();
 	return 0;
@@ -68,12 +72,14 @@ allocate_test()
 char *
 copy_add_trailing_spaces(char * s, int spaces) 
 {
-	char spc = 'X';
 	int nspaces = count_spaces(s);
     int len = ((strlen(s) + nspaces) * sizeof(char)) + 1; // +1 for null terminator?
     char * copy = malloc(len);
 
     strlcpy(copy, s, len);
+    for (int i=0; i<nspaces; i++) {
+        strlcat(copy, "X", len);
+    }
     printf("copy[%s] tried for length:%d copy length:%zu\n", copy, len, strlen(copy));
     return copy;
 }
