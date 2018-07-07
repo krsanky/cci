@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 char    *URLify(const char *);
 int      count_spaces(const char *);
 char    *copy_add_trailing_spaces(const char *, int);
 void	 teststuff();
 void	 push_right(char *, int, int, int); 
+
+bool debug = false;
 
 /* 
  * All major routines should have a comment briefly describing what 
@@ -33,41 +36,41 @@ main(int argc, char * argv[])
 	};
     nwords = sizeof(words)/sizeof(words[0]);
 
-    char * s1 = copy_add_trailing_spaces(words[0], count_spaces(words[0]));
- 	push_right(s1, 3, 2, strlen(words[0])); // push right 2 spaces at index 3
-	printf("[%s]PUSH_RIGHT[%s]", words[0], s1);
 
-    for (int i=0; i<nwords; i++) {
-	    printf("word[%s] url[%s]\n", words[i], URLify(words[i]));
-    }    
+    char * s1 = copy_add_trailing_spaces(words[1], count_spaces(words[1]));
+    push_right(s1, 4, 10, 2);
+
+    for (int i=0; i<nwords; i++) 
+        printf("word[%s] url[%s]\n", words[i], URLify(words[i]));
 
 	return 0;
-}
-
-void	
-teststuff() 
-{
-	printf("\n");
-	printf("sizeof('\\0'):%lu\n", sizeof('\0'));
-	printf("sizeof(char):%lu\n", sizeof(char));
-	printf("sizeof('a'):%lu\n", sizeof('a'));
-	printf("\n");
 }
 
 char *
 URLify(const char * s) 
 {
 	char * u;
-	int orig_len;
+	int orig_len, end_cap;
 
+    orig_len = end_cap = strlen(s);
     u = copy_add_trailing_spaces(s, count_spaces(s));
 
 	for (int i=0; i<strlen(s); i++) {
-		/*
 		printf("[%c]", u[i]); 
 		if (u[i] == ' ') {
 			printf("SPACE");
+            push_right(u, i, end_cap, 2);
+            end_cap = end_cap + 2;
+            u[i] = '/';
+            u[i+1] = '|';
+            u[i+2] = '\\';
 		}
+		/*
+        _ _ _ _ _ _ _ _ _ _ _ _ _
+	    t e s t * s t r i n g   1
+        _ _ _ _ _ _ _ _ _ _ _ _ _|_ _ _ _
+
+        at the asterisk*, move the remaining string(up to end_cap) 2 spaces to the right 
 		*/
 		
 	}	
@@ -112,12 +115,28 @@ copy_add_trailing_spaces(const char * s, int spaces)
 }
 
 /*
- * Move all characters in the string to the right by 'count' spaces.
- * Do this at location 'loc'.
+ * Move the sub-string [start, end] to the right by 'count' spaces.
+ *
+[test string 1    ]
+[XXXX stringXXXXXX]
  */
 void
-push_right(char * s, int loc, int count, int orig_len) {
-	printf("loc:%d count:%d orig_len:%d\n", loc, count, orig_len);
+push_right(char * s, int start, int end, int count) {
+    if (debug) {
+	    printf("[%s]\n", s);
+	    printf("[");
+        for (int i=0; i<strlen(s); i++) {
+            if ((i<start) || (i>end)) 
+                printf("%c", 'X');
+            else
+                printf("%c", s[i]);
+        }
+	    printf("]\n");
+    }
 	  
+    for (int i=end; i>start; i--) { 
+        s[i+count] = s[i];
+    }
+    if (debug) printf("[%s]\n", s);
 }
 
