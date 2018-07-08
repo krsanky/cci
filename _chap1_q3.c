@@ -37,6 +37,7 @@ main(int argc, char * argv[])
     char * s2 = copy_add_trailing_spaces(w2, count_spaces(w2)*2);
     printf("s2[%s]\n", s2);
     push_right(s2, 4, 10, 2);
+    printf("s2[%s]\n", s2);
 
     /*
     for (int i=0; i<nwords; i++) {
@@ -110,17 +111,16 @@ copy_add_trailing_spaces(const char * s, int spaces)
     for (int i=0; i<spaces; i++) {
         strlcat(copy, " ", len);
     }
-    printf("copy[%s] tried for length:%d copy length:%zu\n", copy, len, strlen(copy)); 
+    printf("orig[%s] copy[%s] length(incl. NUL):%d strlen(copy):%zu\n", s, copy, len, strlen(copy)); 
     return copy;
 }
 
-/* DO this for the general case.
+/* 
  * Move the sub-string [start, end] to the right by 'count' spaces.
  */
 void
 push_right(char * s, int start, int end, int count) {
     for (int i=end; i>start; i--)  
         s[i+count] = s[i];
-    
 }
 
