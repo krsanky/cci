@@ -12,14 +12,7 @@ compress_string: $@.c
 	$(CC) $(CFLAGS) -o $@ $@.c $(LDFLAGS)
 
 chap1_q3: _chap1_q3.c
-	@echo echo echo 
-	cc -o chap1_q3 _chap1_q3.c
-
-install: 
-	cp chap1_q3 ${HOME}/bin
-
-uninstall: clean
-	rm -f ${HOME}/bin/chap1_q3 
+	$(CC) $(CFLAGS) -o $@ _$@.c $(LDFLAGS)
 
 clean:
 	rm -f compress_string chap1_q3
