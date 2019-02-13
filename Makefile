@@ -1,3 +1,16 @@
+CFLAGS+= -W -Wall -O2 -std=c99 -g -pedantic
+#CFLAGS+= -I/usr/local/include
+#CFLAGS+= -Imtemplate
+#LDFLAGS+= -L/usr/local/lib
+#LDFLAGS+= -Lmtemplate
+#LDFLAGS+= -lmarkdown 
+#LDFLAGS+= -lmtemplate
+
+all: compress_string chap1_q3
+
+compress_string: $@.c
+	$(CC) $(CFLAGS) -o $@ $@.c $(LDFLAGS)
+
 chap1_q3: _chap1_q3.c
 	@echo echo echo 
 	cc -o chap1_q3 _chap1_q3.c
@@ -9,12 +22,7 @@ uninstall: clean
 	rm -f ${HOME}/bin/chap1_q3 
 
 clean:
-	rm -f chap1_q3 
-
-#depend:  '>' is gnu specific
-#	cc -E -MM *.c > .depend
-#	cc -E -MM *.cpp > .depend
-
+	rm -f compress_string chap1_q3
 
 #Local variables
 #    Variables that are defined specific to a certain target.  Standard
