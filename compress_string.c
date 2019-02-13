@@ -13,38 +13,35 @@ compress_string(const char *s, char **c)
 	char		prev;
 	int		prev_count;
 	int		cl;
-	int		cidx;
 	char		tmp[100];
 	
 	prev = s[0];
 	prev_count = 0;
 	cl = 5 * strlen(s);
-	*c = malloc(cl);
+	*c = calloc(cl, cl*sizeof('a'));
 	if (*c == NULL)
 		return -1;
-	(*c)[0] = '\0';
-	cidx = 0;
-
-	for (int i=1; i<strlen(s); i++) {
-		printf("%2d:%c prev:%c\n", i, s[i], prev);
-		if (prev == s[i]) {
+	strlcpy(*c, "", cl); /* overkill to make sure valid null terminated string? */
+	for (unsigned long i=1; i<strlen(s)+1; i++) {
+		//printf("%2lu:%c prev:%c\n", i, s[i], prev);
+		if ((prev == s[i]) && (i<strlen(s))) {
 			prev_count += 1;
 		} else {
-			(*c)[cidx] = s[i];
-			cidx += 1;
-			(*c)[cidx] = '\0';
-			if (prev_count > 0) {
-				tmp[0] = '\0';
-				snprintf(tmp, 99, "%d", prev_count);
-				strlcat(*c, tmp, cl);
-			}
+			tmp[0] = '\0';
+			snprintf(tmp, 99, "%c", prev);
+			//printf("tmp:%s\n", tmp);
+			strlcat(*c, tmp, cl);
+			tmp[0] = '\0';
+			snprintf(tmp, 99, "%d", prev_count+1);
+			//printf("-tmp:%s\n", tmp);
+			strlcat(*c, tmp, cl);
+			prev_count = 0;
 		}
-
-		prev = s[i];
+		if (i<strlen(s)) 
+			prev = s[i];
 	}
 
-	printf("c:%s\n", *c);
-	*c = NULL;
+	//printf("c:%s\n", *c);
 	return 0;
 }
 
@@ -52,16 +49,20 @@ int
 main() 
 {
 	char		s1[] = "aabcccccaaa";
-	char		*c;
 	char		s1_out[] = "a2b1c5a3";
+	char		s2[] = "asdqqwe";
+	char		s2_out[] = "a1s1d1q2w1e1";
+	char		s3[] = "SLKwwQQap";
+	char		s3_out[] = "S1L1K1w2Q2a1p1";
+	char		*c;
 	int		ret;
 
 	ret = compress_string(s1, &c);
-	printf("s:%s c:%s\n", s1, c);
-
-	char		buf[100];
-	strlcpy(buf, "asdasd...", 100);
-	printf("buf:%s\n", buf);
+	printf("s:%s ret:%d c:%s exp:%s\n", s1, ret, c, s1_out);
+	ret = compress_string(s2, &c);
+	printf("s:%s ret:%d c:%s exp:%s\n", s2, ret, c, s2_out);
+	ret = compress_string(s3, &c);
+	printf("s:%s ret:%d c:%s exp:%s\n", s3, ret, c, s3_out);
 
 	return EXIT_SUCCESS;
 }
