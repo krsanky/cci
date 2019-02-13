@@ -42,6 +42,8 @@ compress_string(const char *s, char **c)
 	}
 
 	//printf("c:%s\n", *c);
+	if (strlen(s) <= strlen(*c))
+		return 1;
 	return 0;
 }
 
