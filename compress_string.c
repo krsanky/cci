@@ -18,10 +18,10 @@ compress_string(const char *s, char **c)
 	prev = s[0];
 	prev_count = 0;
 	cl = 5 * strlen(s);
-	*c = calloc(cl, cl*sizeof('a'));
+	*c = calloc(cl, 1);
 	if (*c == NULL)
 		return -1;
-	strlcpy(*c, "", cl); /* overkill to make sure valid null terminated string? */
+	//strlcpy(*c, "", cl); /* overkill to make sure valid null terminated string? */
 	for (unsigned long i=1; i<strlen(s)+1; i++) {
 		//printf("%2lu:%c prev:%c\n", i, s[i], prev);
 		if ((prev == s[i]) && (i<strlen(s))) {
@@ -61,10 +61,13 @@ main()
 
 	ret = compress_string(s1, &c);
 	printf("s:%s ret:%d c:%s exp:%s\n", s1, ret, c, s1_out);
+	free(c);
 	ret = compress_string(s2, &c);
 	printf("s:%s ret:%d c:%s exp:%s\n", s2, ret, c, s2_out);
+	free(c);
 	ret = compress_string(s3, &c);
 	printf("s:%s ret:%d c:%s exp:%s\n", s3, ret, c, s3_out);
+	free(c);
 
 	return EXIT_SUCCESS;
 }
