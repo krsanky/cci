@@ -4,6 +4,19 @@
 
 #include "ll.h"
 
+int DEBUG = 1;
+
+void
+ll_free(ll_node *l)
+{
+	if (l->next != NULL)
+		ll_free(l->next);
+	if (DEBUG) 
+		printf("free node:%s\n", l->val);
+	free(l->val);
+	free(l);
+}
+
 void
 ll_deltail(ll_node *l)
 {
@@ -16,7 +29,6 @@ ll_deltail(ll_node *l)
 	if (p != NULL) 
 		p->next = NULL;
 	free(l);
-	
 }
 
 void
@@ -54,5 +66,19 @@ ll_append(ll_node *l, ll_node *n)
 	while(l->next != NULL)
 		l = l->next;
 	l->next = n;
+}
+
+/* IS THIS fn needed ?
+ * return 0 on success and != 0 on failure
+ */
+int
+ll_prepend(ll_node *l, ll_node *n)
+{
+	if (n->next != NULL) {
+		return -1;
+	}
+	n->next = l;
+	return 0;
+
 }
 
