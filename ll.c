@@ -68,17 +68,4 @@ ll_append(ll_node *l, ll_node *n)
 	l->next = n;
 }
 
-/* IS THIS fn needed ?
- * return 0 on success and != 0 on failure
- */
-int
-ll_prepend(ll_node *l, ll_node *n)
-{
-	if (n->next != NULL) {
-		return -1;
-	}
-	n->next = l;
-	return 0;
-
-}
 

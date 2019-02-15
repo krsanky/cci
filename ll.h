@@ -10,7 +10,6 @@ void		ll_print(ll_node *);
 ll_node		*ll_mknode(char *);
 void		ll_append(ll_node *, ll_node *);
 
-int ll_prepend(ll_node *, ll_node *);
 /*
 ll_node * ll_first();
 ll_node * ll_last();
