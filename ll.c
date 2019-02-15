@@ -4,7 +4,7 @@
 
 #include "ll.h"
 
-int DEBUG = 1;
+int DEBUG = 0;
 
 void
 ll_free(ll_node *l)

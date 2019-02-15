@@ -26,11 +26,7 @@ main()
 		printf("error making ll_node(s)\n");
 	}
 	ll_free(l);
-/*
-	free(l);
-	free(n2);
-	free(n3);
-*/
+
 	return EXIT_SUCCESS;
 }
 
