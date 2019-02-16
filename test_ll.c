@@ -4,14 +4,14 @@
 
 #include "ll.h"
 
-int 
-main() 
+int
+main()
 {
 	printf("ll test\n");
 
-	ll_node		*l;
-	ll_node		*n2;
-	ll_node		*n3;
+	ll_node        *l;
+	ll_node        *n2;
+	ll_node        *n3;
 
 	l = ll_mknode("node 1 -- head");
 	n2 = ll_mknode("node 2");
@@ -29,4 +29,3 @@ main()
 
 	return EXIT_SUCCESS;
 }
-

@@ -5,15 +5,15 @@
 #include "02.h"
 
 void
-rm_head_dupes(ll_node *l)
+rm_head_dupes(ll_node * l)
 {
-	ll_node		*h;
-	ll_node		*del;
+	ll_node        *h;
+	ll_node        *del;
 
 	h = l;
 
 	while (l->next != NULL) {
-/*		printf("strcmp: %s %s\n", h->val, l->next->val);*/
+		/* printf("strcmp: %s %s\n", h->val, l->next->val); */
 		if ((strcmp(h->val, l->next->val) == 0)) {
 			printf("MATCH: %s %s\n", h->val, l->next->val);
 			/* del the node l->next from list */
@@ -25,4 +25,3 @@ rm_head_dupes(ll_node *l)
 		l = l->next;
 	}
 }
-
