@@ -9,7 +9,8 @@
 void
 print_head_dupes(ll_node *l)
 {
-
+	if (l->next != NULL)
+		printf("noop\n");
 }
 
 ll_node *
@@ -51,7 +52,9 @@ main()
 	printf("remove dupes\n");
 	if ((l = build_list(200)) == NULL)
 		return EXIT_FAILURE;
+	printf("ll length:%d\n", ll_length(l));
 	rm_head_dupes(l);
+	printf("- ll length:%d\n", ll_length(l));
 /*	ll_print(l);*/
 	ll_free(l);
 

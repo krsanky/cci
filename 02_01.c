@@ -16,11 +16,11 @@ rm_head_dupes(ll_node *l)
 /*		printf("strcmp: %s %s\n", h->val, l->next->val);*/
 		if ((strcmp(h->val, l->next->val) == 0)) {
 			printf("MATCH: %s %s\n", h->val, l->next->val);
-			/* del the node l->next from list 
+			/* del the node l->next from list */
 			del = l->next;
 			l->next = l->next->next;
+			del->next = NULL;
 			ll_free(del);
-			*/
 		}
 		l = l->next;
 	}

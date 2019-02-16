@@ -6,6 +6,7 @@
 
 int DEBUG = 0;
 
+/* free list */
 void
 ll_free(ll_node *l)
 {
@@ -68,4 +69,14 @@ ll_append(ll_node *l, ll_node *n)
 	l->next = n;
 }
 
+int
+ll_length(ll_node * l)
+{
+	int		len=0;
+	while(l->next != NULL) {
+		len++;
+		l = l->next;
+	}
+	return len;
+}
 
