@@ -4,6 +4,13 @@
 #include <time.h>
 
 #include "ll.h"
+#include "02.h"
+
+void
+print_head_dupes(ll_node *l)
+{
+
+}
 
 ll_node *
 build_list(int len)
@@ -34,23 +41,11 @@ build_list(int len)
 	return l;
 }
 
-void
-rm_head_dupes(ll_node *l)
-{
-	ll_node		*h;
-	h = l;
-	while (l->next != NULL) {
-/*		printf("strcmp: %s %s\n", h->val, l->next->val);*/
-		if ((strcmp(h->val, l->next->val) == 0)) {
-			printf("MATCH: %s %s\n", h->val, l->next->val);
-		}
-		l = l->next;
-	}
-}
-
 int 
 main() 
 {
+	printf("02_01_test.c\n");
+
 	ll_node		*l;
 
 	printf("remove dupes\n");
@@ -59,6 +54,7 @@ main()
 	rm_head_dupes(l);
 /*	ll_print(l);*/
 	ll_free(l);
+
 	return EXIT_SUCCESS;
 }
 
