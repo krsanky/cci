@@ -4,11 +4,9 @@
 
 #include "ll.h"
 
-int
-main()
+void
+test1()
 {
-	printf("ll test\n");
-
 	ll_node        *l;
 	ll_node        *n2;
 	ll_node        *n3;
@@ -26,6 +24,25 @@ main()
 		printf("error making ll_node(s)\n");
 	}
 	ll_free(l);
+}
+
+void
+test_ll_rm()
+{
+	ll_node		*l;
+	l = ll_make_list(3, "1", "2", "3");
+	ll_print(l);
+}
+
+int
+main()
+{
+	printf("ll test\n");
+	printf("------------------------------\n");
+
+/*	test1();*/
+	test_ll_rm();
 
 	return EXIT_SUCCESS;
 }
+
