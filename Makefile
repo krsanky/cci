@@ -12,3 +12,5 @@ clean:
 test_ll: $@.c ll.c ll.h
 	$(CC) $(CFLAGS) -o $@ $@.c ll.c $(LDFLAGS)
 
+test_include_stuff: $@.c lib1.h lib1.c
+	$(CC) $(CFLAGS) -o $@ $@.c lib1.c $(LDFLAGS)
