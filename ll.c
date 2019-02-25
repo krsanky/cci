@@ -7,7 +7,7 @@
 
 int 		DEBUG = 0;
 
-/* free list */
+/* free _whole_ list */
 void
 ll_free(ll_node * l)
 {
@@ -19,24 +19,63 @@ ll_free(ll_node * l)
 	free(l);
 }
 
+void
+ll_free1(ll_node *n)
+{
+	free(n->val);
+	free(n);
+}
+
 /* return 0 for equal */
 int
 ll_cmp(ll_node * n1, ll_node * n2)
 {
+
 	if ((n1 == NULL) || (n2 == NULL))
 		return 1;
 
-	return 1;
+	return strcmp(n1->val, n2->val);
 
 }
 
-/* take node out of list */
+/* take _1st_match_ node out of list */
 int
-ll_rm(ll_node * l, ll_node * n)
+ll_rm(ll_node **l, char *v)
 {
-	while (l->next != NULL) {
-		printf("l->val:%s\n", l->val);
-	}
+	ll_node		*ip, *i;
+	
+	ip = NULL;
+	i = *l;
+
+	do {
+		if (DEBUG && (ip != NULL))
+			printf("ip->val:%s\n", ip->val);
+		if (DEBUG)
+			printf("i->val:%s\n", i->val);
+
+		if (strcmp(i->val, v) == 0) {
+			if (DEBUG)
+				printf("DEL %s\n", i->val);
+			if (ip == NULL) {
+				if (DEBUG)
+					printf("1st node so...\n");
+				*l = i->next;
+				ll_free1(i);
+				return 2;
+			} else {
+				if (DEBUG)
+					printf("del by rearrange linke ...\n");
+				ip->next = i->next;
+				ll_free1(i);
+				return 1;
+			}
+		}
+
+
+		ip = i;
+		i = i->next;
+	} while (i != NULL); 
+	
 	return 0;
 }
 
@@ -51,7 +90,7 @@ ll_deltail(ll_node * l)
 	}
 	if (p != NULL)
 		p->next = NULL;
-	free(l);
+	ll_free1(l);
 }
 
 void
@@ -74,6 +113,7 @@ ll_mknode(char *v)
 	ll_node        *n = NULL;
 
 	n = malloc(sizeof(ll_node));
+	n->next = NULL;
 	if (n != NULL) {
 		n->val = strdup(v);
 		if (n->val == NULL)
@@ -102,7 +142,7 @@ ll_length(ll_node * l)
 }
 
 ll_node		*
-ll_make_list(int  count,...)
+ll_makelist(int  count,...)
 {
 	ll_node 	*h;
 	ll_node 	*n;
