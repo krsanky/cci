@@ -45,18 +45,24 @@ build_list(int len)
 int
 main()
 {
-	printf("02_01_test.c\n");
-
+	int		list_length = 10;
 	ll_node        *l;
 
+	printf("02_01_test.c\n");
 	printf("remove dupes\n");
-	if ((l = build_list(200)) == NULL)
-		return EXIT_FAILURE;
-	printf("ll length:%d\n", ll_length(l));
-	rm_head_dupes(l);
-	printf("- ll length:%d\n", ll_length(l));
-	/* ll_print(l); */
-	ll_free(l);
 
+	if ((l = build_list(list_length)) == NULL)
+	/*if ((l = ll_makelist(6, "1", "2", "1", "2", "3", "3")) == NULL)*/
+		return EXIT_FAILURE;
+
+	printf("* ll length:%d\n", ll_length(l));
+	ll_print(l);
+
+	rm_dupes(l);
+
+	printf("- ll length:%d\n", ll_length(l));
+	ll_print(l);
+
+	ll_free(l);
 	return EXIT_SUCCESS;
 }

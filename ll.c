@@ -15,8 +15,7 @@ ll_free(ll_node * l)
 		ll_free(l->next);
 	if (DEBUG)
 		printf("free node:%s\n", l->val);
-	free(l->val);
-	free(l);
+	ll_free1(l);
 }
 
 void
@@ -30,15 +29,13 @@ ll_free1(ll_node *n)
 int
 ll_cmp(ll_node * n1, ll_node * n2)
 {
-
 	if ((n1 == NULL) || (n2 == NULL))
-		return 1;
-
+		return -2;
 	return strcmp(n1->val, n2->val);
-
 }
 
-/* take _1st_match_ node out of list */
+/* take _1st_match_ node out of list 
+   return 0 for success */
 int
 ll_rm(ll_node **l, char *v)
 {
@@ -70,7 +67,6 @@ ll_rm(ll_node **l, char *v)
 				return 1;
 			}
 		}
-
 
 		ip = i;
 		i = i->next;
@@ -133,7 +129,9 @@ ll_append(ll_node * l, ll_node * n)
 int
 ll_length(ll_node * l)
 {
-	int 		len = 0;
+	int 		len = 1;
+	if (l == NULL)
+		return 0;
 	while (l->next != NULL) {
 		len++;
 		l = l->next;

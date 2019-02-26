@@ -21,8 +21,8 @@ compress_string(const char *s, char **c)
 	*c = calloc(cl, 1);
 	if (*c == NULL)
 		return -1;
-	//strlcpy(*c, "", cl);	/* overkill to make sure valid null
-				 * terminated string? */
+	/* overkill to make sure valid null terminated string? */
+	/*strlcpy(*c, "", cl);*/
 	for (unsigned long i = 1; i < strlen(s) + 1; i++) {
 		//printf("%2lu:%c prev:%c\n", i, s[i], prev);
 		if ((prev == s[i]) && (i < strlen(s))) {

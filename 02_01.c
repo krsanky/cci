@@ -7,21 +7,36 @@
 void
 rm_head_dupes(ll_node * l)
 {
-	ll_node        *h;
-	ll_node        *del;
+	ll_node		*h;
+	ll_node		*i, *iprev;
+	ll_node		*d;
+
+	if (l == NULL)
+		return;
+	if (ll_length(l) < 2)
+		return;
 
 	h = l;
+	iprev = h;
+	i = h->next;
 
-	while (l->next != NULL) {
-		/* printf("strcmp: %s %s\n", h->val, l->next->val); */
-		if ((strcmp(h->val, l->next->val) == 0)) {
-			printf("MATCH: %s %s\n", h->val, l->next->val);
-			/* del the node l->next from list */
-			del = l->next;
-			l->next = l->next->next;
-			del->next = NULL;
-			ll_free(del);
+	while (i != NULL) {
+		if (strcmp(h->val, i->val) == 0) {
+			iprev->next = i->next;
+			ll_free1(i);
 		}
-		l = l->next;
+		iprev = i;
+		i = i->next;
 	}
 }
+
+void
+rm_dupes(ll_node *l)
+{
+	while (l != NULL) {
+		rm_head_dupes(l);
+		l = l->next;
+	}
+
+}
+
