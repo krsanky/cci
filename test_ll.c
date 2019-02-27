@@ -29,7 +29,7 @@ test1()
 void
 test_ll_makelist()
 {
-	ll_node		*l;
+	ll_node        *l;
 	l = ll_makelist(3, "1", "2", "3");
 	ll_print(l);
 }
@@ -37,7 +37,7 @@ test_ll_makelist()
 void
 test_ll_cmp()
 {
-	ll_node		*n1, *n2;
+	ll_node        *n1, *n2;
 	n1 = ll_mknode("2");
 	n2 = ll_mknode("2");
 	if ((n1 == NULL) || (n2 == NULL)) {
@@ -53,12 +53,12 @@ test_ll_cmp()
 void
 test_ll_rm()
 {
-	ll_node		*l;
+	ll_node        *l;
 
 	l = ll_makelist(3, "1", "2", "3");
 	printf("========orig:\n");
 	ll_print(l);
-	printf("ll_rm 1 : ret:%d\n", ll_rm(&l, "1"));	
+	printf("ll_rm 1 : ret:%d\n", ll_rm(&l, "1"));
 	printf("after rm:\n");
 	ll_print(l);
 	printf("\n");
@@ -67,16 +67,16 @@ test_ll_rm()
 	l = ll_makelist(3, "1", "2", "3");
 	printf("---------orig:\n");
 	ll_print(l);
-	printf("ll_rm 2 : ret:%d\n", ll_rm(&l, "2"));	
+	printf("ll_rm 2 : ret:%d\n", ll_rm(&l, "2"));
 	printf("after rm:\n");
 	ll_print(l);
 	printf("\n");
 }
 
 void
-test_ptr2struct(ll_node *n1, ll_node *n2)
+test_ptr2struct(ll_node * n1, ll_node * n2)
 {
- 	/* point n1 to n2 ? */
+	/* point n1 to n2 ? */
 	n1 = n2;
 	printf("n1->val:%s\n", n1->val);
 }
@@ -87,22 +87,21 @@ main()
 	printf("ll test\n");
 	printf("------------------------------\n");
 
-/*
-	test1();
-	test_ll_makelist();
-	test_ll_cmp(); 
-*/
+	/*
+		test1();
+		test_ll_makelist();
+		test_ll_cmp();
+	*/
 
 	test_ll_rm();
 
-/*
-	ll_node		*n1, *n2;
-	n1 = ll_mknode("n1");
-	n2 = ll_mknode("n2");
-	test_ptr2struct(n1, n2);
-	printf("n1->val:%s\n", n1->val);
-*/
+	/*
+		ll_node		*n1, *n2;
+		n1 = ll_mknode("n1");
+		n2 = ll_mknode("n2");
+		test_ptr2struct(n1, n2);
+		printf("n1->val:%s\n", n1->val);
+	*/
 
 	return EXIT_SUCCESS;
 }
-

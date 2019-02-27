@@ -19,7 +19,7 @@ ll_free(ll_node * l)
 }
 
 void
-ll_free1(ll_node *n)
+ll_free1(ll_node * n)
 {
 	free(n->val);
 	free(n);
@@ -34,13 +34,14 @@ ll_cmp(ll_node * n1, ll_node * n2)
 	return strcmp(n1->val, n2->val);
 }
 
-/* take _1st_match_ node out of list 
-   return 0 for success */
+/*
+ * take _1st_match_ node out of list return 0 for success
+ */
 int
-ll_rm(ll_node **l, char *v)
+ll_rm(ll_node ** l, char *v)
 {
-	ll_node		*ip, *i;
-	
+	ll_node        *ip, *i;
+
 	ip = NULL;
 	i = *l;
 
@@ -67,11 +68,10 @@ ll_rm(ll_node **l, char *v)
 				return 1;
 			}
 		}
-
 		ip = i;
 		i = i->next;
-	} while (i != NULL); 
-	
+	} while (i != NULL);
+
 	return 0;
 }
 
@@ -139,15 +139,15 @@ ll_length(ll_node * l)
 	return len;
 }
 
-ll_node		*
-ll_makelist(int  count,...)
+ll_node        *
+ll_makelist(int count,...)
 {
-	ll_node 	*h;
-	ll_node 	*n;
-	va_list		args;
-	char		*v;
-	
-	va_start(args, count);  
+	ll_node        *h;
+	ll_node        *n;
+	va_list 	args;
+	char           *v;
+
+	va_start(args, count);
 	v = va_arg(args, char *);
 	if (DEBUG)
 		printf("v1:%s\n", v);
@@ -169,6 +169,3 @@ ll_makelist(int  count,...)
 
 	return h;
 }
-
-
-

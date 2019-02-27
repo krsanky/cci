@@ -1,8 +1,8 @@
 a.out
 *.core
+*.BAK
 wiki/
 compress_string
-_chap1_q3
 test_ll
 2_1
-02_01_test
+*_test

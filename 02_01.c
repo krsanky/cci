@@ -7,9 +7,9 @@
 void
 rm_head_dupes(ll_node * l)
 {
-	ll_node		*h;
-	ll_node		*i, *iprev;
-	ll_node		*d;
+	ll_node        *h;
+	ll_node        *i, *iprev;
+	ll_node        *d;
 
 	if (l == NULL)
 		return;
@@ -31,7 +31,7 @@ rm_head_dupes(ll_node * l)
 }
 
 void
-rm_dupes(ll_node *l)
+rm_dupes(ll_node * l)
 {
 	while (l != NULL) {
 		rm_head_dupes(l);
@@ -39,4 +39,3 @@ rm_dupes(ll_node *l)
 	}
 
 }
-
