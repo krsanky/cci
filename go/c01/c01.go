@@ -11,7 +11,7 @@ Implement an algo.  to determine if a string has all unique characters.
 What if you cannot use addl. data structures?
 `
 
-func Q1() {
+func Q01() {
 	fmt.Printf("%s:\n", "question 1")
 	ss := []string{"asd123", "qweqwe", "dfsW"}
 	for _, s := range ss {
@@ -31,7 +31,7 @@ func UniqueChars1(s string) bool {
 	return true
 }
 
-func Q2() {
+func Q02() {
 	fmt.Println("question 2:")
 
 	ss1 := []string{"asd123", "qweqwe", "dfsW"}
@@ -54,7 +54,7 @@ func IsPermutation(s1, s2 string) bool {
 	return false
 }
 
-func Q3() {
+func Q03() {
 	fmt.Println("Use c/c++ for this one dummy.")
 // 	fmt.Println("question 3:")
 // 	ss := []string{"asd 1 23    ", "q  weq  we        ", "d fsW  "}

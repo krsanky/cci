@@ -5,13 +5,17 @@ import (
 	"reflect"
 
 	"github.com/krsanky/cci/go/c01"
+	"github.com/krsanky/cci/go/c17"
 )
 
 func main() {
 	fmt.Println("cci")
-	c01.Q1()
-	c01.Q2()
-	c01.Q3()
+
+	c01.Q01()
+	c01.Q02()
+	c01.Q03()
+
+	c17.Q19()
 
 	//s := "asdd"
 	//s[1] = '0'
