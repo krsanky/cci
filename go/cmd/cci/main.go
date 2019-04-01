@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/krsanky/cci/chap1"
+	"github.com/krsanky/cci/go/c01"
 )
 
 func main() {
 	fmt.Println("cci")
-	chap1.Q1()
-	chap1.Q2()
-	chap1.Q3()
+	c01.Q1()
+	c01.Q2()
+	c01.Q3()
 
 	//s := "asdd"
 	//s[1] = '0'
