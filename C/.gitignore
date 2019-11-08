@@ -1,10 +1,11 @@
 a.out
 *.core
 *.BAK
-wiki/
 compress_string
 test_ll
-2_1
 *_test
 01_03
 02_01
+16_03
+
+edx_c_course

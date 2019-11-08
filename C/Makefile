@@ -1,6 +1,7 @@
-CFLAGS+= -W -Wall -O2 -std=c99 -g -pedantic
+CFLAGS+=	-W -Wall -std=c99 -g -pedantic
+LDFLAGS+=	
 
-all: 02_01 01_03
+all: 02_01 01_03 16_03 
 
 clean:
 	rm -f *.core *.BAK
@@ -8,6 +9,7 @@ clean:
 	rm -f test_ll 
 	rm -f 01_03
 	rm -f 02_01
+	rm -f 16_03
 
 01_03: $@.c 
 	$(CC) $(CFLAGS) -o $@ $@.c $(LDFLAGS)
@@ -20,3 +22,6 @@ test_ll: $@.c ll.c ll.h
 
 test_include_stuff: $@.c lib1.h lib1.c
 	$(CC) $(CFLAGS) -o $@ $@.c lib1.c $(LDFLAGS)
+
+.PHONY: clean all
+
